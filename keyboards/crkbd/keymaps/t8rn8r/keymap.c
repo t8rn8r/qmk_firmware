@@ -338,7 +338,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       _______,	KC_7,	KC_8,	KC_9, 	KC_EQL,		KC_PAST,					_______, _______, _______, _______, _______, _______,\
 
-                                             KC_0, KC_PSLS, _______,    _______, _______, _______ \
+                                             KC_0, KC_PSLS, _______,	_______, _______, _______ \
   ),
 
   [_RH_NUMS] = LAYOUT( \
