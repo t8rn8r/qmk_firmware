@@ -299,11 +299,11 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT( \
 
-      TD(TD_RESET),			KC_Q,			KC_W,		KC_E,	KC_R,		KC_T,				KC_Y,	KC_U,		KC_I,		KC_O,		KC_P,			TD(TD_PAREN),\
+      TD(TD_RESET),			KC_Q,			KC_W,		KC_E,	KC_R,		KC_T,				KC_Y,	KC_U,		KC_I,			KC_O,			KC_P,			TD(TD_PAREN),\
 
-      LT(_LH_NUMS, KC_TAB),	CTL_T(KC_A),	ALT_T(KC_S),KC_D,	LGUI_T(KC_F),KC_G,				KC_H,	RGUI_T(KC_J),KC_K,		RALT_T(KC_L),TD(TD_SCL_APO),TD(TD_CPAREN),\
+      LT(_LH_NUMS, KC_TAB),	CTL_T(KC_A),	ALT_T(KC_S),KC_D,	LGUI_T(KC_F),KC_G,				KC_H,	RGUI_T(KC_J),LT(RH_NUMS,KC_K),RALT_T(KC_L),	TD(TD_SCL_APO),	TD(TD_CPAREN),\
 
-      LT(_LH_MOVE, KC_GRAVE),SFT_T(KC_Z),	KC_X,		KC_C,	KC_V,		KC_B,				KC_N,	KC_M,		TD(TD_COMM),TD(TD_PER),	SFT_T(KC_SLSH),	S(KC_BSLS),\
+      LT(_LH_MOVE, KC_GRAVE),SFT_T(KC_Z),	KC_X,		KC_C,	KC_V,		KC_B,				KC_N,	KC_M,		TD(TD_COMM),	TD(TD_PER),		SFT_T(KC_SLSH),	S(KC_BSLS),\
 
 												XXXXXXX, LT(_LH_FN, KC_ENT), KC_BSPC,		LT(_LH_FN, KC_SPC), LT(_RH_FN, KC_MINS), KC_ENT \
   ),
@@ -332,24 +332,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LH_NUMS] = LAYOUT( \
 
-      KC_TAB,	KC_1,	KC_2,	KC_3,	KC_DOT,		KC_PPLS,					_______, _______, _______, _______, _______, _______,\
+      _______,	KC_1,	KC_2,	KC_3,	KC_DOT,		KC_PPLS,					_______, _______, _______, _______, _______, _______,\
 
-      _______,	KC_4,	KC_5,	KC_6,	KC_COMM,	KC_PMNS,					_______, _______, _______,_______, _______, _______,\
+      _______,	KC_4,	KC_5,	KC_6,	KC_COMM,	KC_PMNS,					_______, _______, _______, _______, _______, _______,\
 
-      KC_ENT,	KC_7,	KC_8,	KC_9, 	KC_EQL,		KC_PAST,					_______, _______, _______, _______, _______, _______,\
+      _______,	KC_7,	KC_8,	KC_9, 	KC_EQL,		KC_PAST,					_______, _______, _______, _______, _______, _______,\
 
                                              KC_0, KC_PSLS, _______,    _______, _______, _______ \
   ),
 
   [_RH_NUMS] = LAYOUT( \
 
-      KC_TAB,	KC_1,	KC_2,	KC_3,	KC_DOT,		KC_PPLS,					_______, _______, _______, _______, _______, _______,\
+      _______,	KC_DOT,	KC_1,	KC_2,	KC_3,	KC_PPLS,				_______,	_______,	_______,	_______,	_______,	_______,\
 
-      _______,	KC_4,	KC_5,	KC_6,	KC_COMM,	KC_PMNS,					_______, _______, _______,_______, _______, _______,\
+      _______,	KC_COMM,KC_4,	KC_5,	KC_6,	KC_PMNS,				_______,	_______,	_______,	_______,	_______,	_______,\
 
-      KC_ENT,	KC_7,	KC_8,	KC_9, 	KC_EQL,		KC_PAST,					_______, _______, _______, _______, _______, _______,\
+      _______,	KC_EQL,	KC_7,	KC_8,	KC_9, 	KC_PAST,				_______,	_______,	_______,	_______,	_______,	_______,\
 
-                                             KC_0, KC_PSLS, _______,    _______, _______, _______ \
+                                       KC_PSLS, KC_0, _______,    _______, _______, _______ \
   ),
 
   [_LH_MOVE] = LAYOUT( \
