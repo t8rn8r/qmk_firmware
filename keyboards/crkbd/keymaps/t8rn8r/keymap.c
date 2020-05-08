@@ -82,27 +82,28 @@ int cur_dance (qk_tap_dance_state_t *state) {
 	}
 }
 
-void hit_spc_finished (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count == 2) {
-		register_code (KC_ENT);
-	} else if (state->count == 3) {
-		register_code (KC_LSFT);
-		register_code (KC_MINS);
-	} else {
-		register_code (KC_SPC);
-	}
-}
 
-void hit_spc_reset (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count == 2) {
-		unregister_code (KC_ENT);
-	} else if (state->count == 3) {
-		unregister_code (KC_LSFT);
-		unregister_code (KC_MINS);
-	} else {
-		unregister_code (KC_SPC);
-	}
-}
+// void hit_spc_finished (qk_tap_dance_state_t *state, void *user_data) {
+// 	if (state->count == 2) {
+// 		register_code (KC_ENT);
+// 	} else if (state->count == 3) {
+// 		register_code (KC_LSFT);
+// 		register_code (KC_MINS);
+// 	} else {
+// 		register_code (KC_SPC);
+// 	}
+// }
+
+// void hit_spc_reset (qk_tap_dance_state_t *state, void *user_data) {
+// 	if (state->count == 2) {
+// 		unregister_code (KC_ENT);
+// 	} else if (state->count == 3) {
+// 		unregister_code (KC_LSFT);
+// 		unregister_code (KC_MINS);
+// 	} else {
+// 		unregister_code (KC_SPC);
+// 	}
+// }
 
 
 void hit_comma_finished (qk_tap_dance_state_t *state, void *user_data) {
@@ -243,18 +244,24 @@ void hit_reset_reset (qk_tap_dance_state_t *state, void *user_data) {
 
 qk_tap_dance_action_t tap_dance_actions[] = {
 	// hit once for SPC, twice for ENT
-	[TD_SPC_ENT] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, hit_spc_finished, hit_spc_reset),
+	// [TD_SPC_ENT] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, hit_spc_finished, hit_spc_reset),
+
 	// hit the comma key 1x for comma, 2x for question mark
 	[TD_COMM] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, hit_comma_finished, hit_comma_reset),
+
 	// hit period once for period, twice for exclamation mark
 	[TD_PER] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, hit_period_finished, hit_period_reset),
+
 	// hit Q once for q, twice for tab
-	[TD_Q_TAB] = ACTION_TAP_DANCE_DOUBLE (KC_Q, KC_TAB),
+	// [TD_Q_TAB] = ACTION_TAP_DANCE_DOUBLE (KC_Q, KC_TAB),
+
 	// open and close parentheses
 	[TD_PAREN] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, hit_paren_finished, hit_paren_reset),
 	[TD_CPAREN] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, hit_cparen_finished, hit_cparen_reset),
+
 	// send apostrophe when tapped, semicoln on double tap
 	[TD_SCL_APO] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, hit_scl_finished, hit_scl_reset),
+
 	// escape until tapdance 5 times, then reset
 	[TD_RESET] = ACTION_TAP_DANCE_FN_ADVANCED (NULL, hit_reset_finished, hit_reset_reset)
 };
@@ -263,13 +270,13 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT( \
 
-      TD(TD_RESET),	TD(TD_Q_TAB),	KC_W,			KC_E,	KC_R,			KC_T,				KC_Y,	KC_U,			KC_I,			KC_O,			KC_P,			TD(TD_PAREN),\
+      TD(TD_RESET),			KC_Q,	KC_W,			KC_E,	KC_R,					KC_T,				KC_Y,	KC_U,			KC_I,			KC_O,			KC_P,			TD(TD_PAREN),\
 
-      TT(_LH_NUMS),	CTL_T(KC_A),	ALT_T(KC_S),	KC_D,	LGUI_T(KC_F),	KC_G,				KC_H,	RGUI_T(KC_J),	KC_K,			RALT_T(KC_L),	TD(TD_SCL_APO),	TD(TD_CPAREN),\
+      LT(_LH_NUMS, KC_TAB),	CTL_T(KC_A),	ALT_T(KC_S),	KC_D,	LGUI_T(KC_F),	KC_G,				KC_H,	RGUI_T(KC_J),	KC_K,			RALT_T(KC_L),	TD(TD_SCL_APO),	TD(TD_CPAREN),\
 
-      TT(_LH_MOVE),	SFT_T(KC_Z),	KC_X,			KC_C,	KC_V,			KC_B,				KC_N,	KC_M,			TD(TD_COMM),	TD(TD_PER),		SFT_T(KC_SLSH),	XXXXXXX,\
+      TT(_LH_MOVE),			SFT_T(KC_Z),	KC_X,			KC_C,	KC_V,			KC_B,				KC_N,	KC_M,			TD(TD_COMM),	TD(TD_PER),		SFT_T(KC_SLSH),	XXXXXXX,\
 
-														XXXXXXX,	XXXXXXX,	KC_BSPC,	TD(TD_SPC_ENT),		MO(_LH_FN),		XXXXXXX \
+																XXXXXXX,	KC_ENT,	KC_BSPC,	KC_SPC,		LT(_LH_FN, KC_MINS),		XXXXXXX \
   ),
 
   [_LH_FN] = LAYOUT( \
