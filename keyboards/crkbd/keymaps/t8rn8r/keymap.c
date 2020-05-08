@@ -263,13 +263,13 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT( \
 
-      TD(TD_RESET),	TD(TD_Q_TAB),	KC_W,			KC_E,	KC_R,	KC_T,						KC_Y,	KC_U,	KC_I,			KC_O,			KC_P,			TD(TD_PAREN),\
+      TD(TD_RESET),	TD(TD_Q_TAB),	KC_W,			KC_E,	KC_R,			KC_T,				KC_Y,	KC_U,			KC_I,			KC_O,			KC_P,			TD(TD_PAREN),\
 
-      TT(_LH_NUMS),	CTL_T(KC_A),	ALT_T(KC_S),	KC_D,	KC_F,	KC_G,						KC_H,	KC_J,	KC_K,			RALT_T(KC_L),	TD(TD_SCL_APO),	TD(TD_CPAREN),\
+      TT(_LH_NUMS),	CTL_T(KC_A),	ALT_T(KC_S),	KC_D,	LGUI_T(KC_F),	KC_G,				KC_H,	RGUI_T(KC_J),	KC_K,			RALT_T(KC_L),	TD(TD_SCL_APO),	TD(TD_CPAREN),\
 
-      TT(_LH_MOVE),	SFT_T(KC_Z),	KC_X,			KC_C,	KC_V,	KC_B,						KC_N,	KC_M,	TD(TD_COMM),	TD(TD_PER),		SFT_T(KC_SLSH),	XXXXXXX,\
+      TT(_LH_MOVE),	SFT_T(KC_Z),	KC_X,			KC_C,	KC_V,			KC_B,				KC_N,	KC_M,			TD(TD_COMM),	TD(TD_PER),		SFT_T(KC_SLSH),	XXXXXXX,\
 
-											KC_LGUI,	KC_LCTL,	KC_BSPC,		TD(TD_SPC_ENT),		MO(_LH_FN),		XXXXXXX \
+														XXXXXXX,	XXXXXXX,	KC_BSPC,	TD(TD_SPC_ENT),		MO(_LH_FN),		XXXXXXX \
   ),
 
   [_LH_FN] = LAYOUT( \
