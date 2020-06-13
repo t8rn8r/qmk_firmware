@@ -13,16 +13,16 @@ extern uint8_t is_master;
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
-#define	 _QWERTY	 0
-#define	 _RH_FN     	 1
-#define	 _LH_FN		 2
-#define	 _LH_NUMS	 3
-#define	 _RH_NUMS	 4
-#define	 _LH_MOVE	 5
-#define	 _RH_MOVE	 6
-#define	 _PLOVER	14
+#define	 _BASE		0		
+#define	 _RH_FN     	1	
+#define	 _LH_FN		2	
+#define	 _LH_NUMS	3	
+#define	 _RH_NUMS	4	
+#define	 _LH_MOVE	5	
+#define	 _RH_MOVE	6	
+#define	 _PLOVER	14	
 #define	 _TOP 	        15
- 
+
 enum custom_keycodes {
   TC_CCQ = SAFE_RANGE
 };
@@ -83,29 +83,6 @@ int cur_dance (qk_tap_dance_state_t *state) {
 		return 8; //because why not?
 	}
 }
-
-
-// void hit_spc_finished (qk_tap_dance_state_t *state, void *user_data) {
-// 	if (state->count == 2) {
-// 		register_code (KC_ENT);
-// 	} else if (state->count == 3) {
-// 		register_code (KC_LSFT);
-// 		register_code (KC_MINS);
-// 	} else {
-// 		register_code (KC_SPC);
-// 	}
-// }
-
-// void hit_spc_reset (qk_tap_dance_state_t *state, void *user_data) {
-// 	if (state->count == 2) {
-// 		unregister_code (KC_ENT);
-// 	} else if (state->count == 3) {
-// 		unregister_code (KC_LSFT);
-// 		unregister_code (KC_MINS);
-// 	} else {
-// 		unregister_code (KC_SPC);
-// 	}
-// }
 
 
 void hit_comma_finished (qk_tap_dance_state_t *state, void *user_data) {
@@ -296,17 +273,17 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 	[TD_KILL] = ACTION_TAP_DANCE_FN (kill)
 };
 
-/* alignment regexp: [a-z0-9_()]+,\([[:space:]]+\) */
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QWERTY] = LAYOUT( \
+  [_BASE] = LAYOUT( \
 
-      TD(TD_RESET),		KC_Q,		KC_W,		KC_E,	KC_R,			KC_T,	KC_Y,	KC_U,		KC_I,			KC_O,		KC_P,		TD(TD_PAREN), \
+      TD(TD_RESET),		KC_Q,		KC_W,		KC_E,	KC_R,		KC_T,	KC_Y,	KC_U,		KC_I,			KC_O,		KC_P,		TD(TD_PAREN),	\
 
-      LT(_LH_NUMS,KC_TAB),	CTL_T(KC_A),	ALT_T(KC_S),	KC_D,	LGUI_T(KC_F),		KC_G,	KC_H,	RGUI_T(KC_J),	LT(_RH_NUMS,KC_K),	RALT_T(KC_L),	TD(TD_SCL_APO),	TD(TD_CPAREN), \
+      LT(_LH_NUMS,KC_TAB),	CTL_T(KC_A),	ALT_T(KC_S),	KC_D,	LGUI_T(KC_F),	KC_G,	KC_H,	RGUI_T(KC_J),	LT(_RH_NUMS,KC_K),	RALT_T(KC_L),	TD(TD_SCL_APO),	TD(TD_CPAREN),	\
 
-      LT(_LH_MOVE,KC_GRAVE),	SFT_T(KC_Z),	KC_X,		KC_C,	KC_V,			KC_B,	KC_N,	KC_M,		TD(TD_COMM),		TD(TD_PER),	SFT_T(KC_SLSH),	KC_BSLS, \
+      LT(_LH_MOVE,KC_GRAVE),	SFT_T(KC_Z),	KC_X,		KC_C,	KC_V,		KC_B,	KC_N,	KC_M,		TD(TD_COMM),		TD(TD_PER),	SFT_T(KC_SLSH),	KC_BSLS,	\
 
-                                     XXXXXXX,	LT(_LH_FN,KC_ENT),	KC_BSPC,	  LT(_LH_FN,KC_SPC),	LT(_RH_FN,KC_MINS),	     KC_ENT \
+				      	XXXXXXX,	LT(_LH_FN,KC_ENT),	KC_BSPC,	  LT(_LH_FN,KC_SPC),	LT(_RH_FN,KC_MINS),	     KC_ENT \
   ),
 
   [_RH_FN] = LAYOUT( \
@@ -339,18 +316,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       _______,	KC_7,		KC_8,		KC_9,		KC_EQL,		KC_PAST,	_______,	_______,	_______,	_______,	_______,	_______,	\
 
-      KC_0,	KC_PSLS,	_______,	_______,	_______,	_______	\
+                                                KC_0,		KC_PSLS,	_______,	_______,	_______,	_______	\
   ),
 
   [_RH_NUMS] = LAYOUT( \
 
-      _______,	KC_DOT,	KC_1,	KC_2,	KC_3,	KC_PPLS,	_______,	_______,	_______,	_______,	_______,	_______,	\
+      _______,	KC_DOT,		KC_1,		KC_2,		KC_3,		KC_PPLS,	_______,	_______,	_______,	_______,	_______,	_______,	\
 
-      _______,	KC_COMM,	KC_4,	KC_5,	KC_6,	KC_PMNS,	_______,	_______,	_______,	_______,	_______,	_______,	\
+      _______,	KC_COMM,	KC_4,		KC_5,		KC_6,		KC_PMNS,	_______,	_______,	_______,	_______,	_______,	_______,	\
 
-      _______,	KC_EQL,	KC_7,	KC_8,	KC_9, 	KC_PAST,	_______,	_______,	_______,	_______,	_______,	_______,	\
+      _______,	KC_EQL,		KC_7,		KC_8,		KC_9,		KC_PAST,	_______,	_______,	_______,	_______,	_______,	_______,	\
 
-                                       KC_PSLS, KC_0,	_______,	_______,	_______,	_______	\
+                                                KC_PSLS,	KC_0,		_______,	_______,	_______,	_______	\
   ),
 
   [_LH_MOVE] = LAYOUT( \
@@ -361,7 +338,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  	
       _______,	KC_LEFT,	KC_DOWN,	KC_RIGHT,	KC_PGDN,	XXXXXXX,	MO(_LH_NUMS),	MO(_LH_MOVE),	_______,	_______,	_______,	_______,	\
  
-											KC_LSFT,	_______,	_______,	_______,	_______,	_______	\
+						   KC_LSFT,	_______,	_______,	_______,	_______,	_______	\
   ),
 
   [_RH_MOVE] = LAYOUT( \
@@ -395,7 +372,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, _______, _______, _______, _______,                      _______, _______, _______, _______, _______, _______,\
 
                                           _______, _______, _______,    _______, _______, _______ \
-  )
+		   )
 };
 
 // Below is all the stuff left from the default map
