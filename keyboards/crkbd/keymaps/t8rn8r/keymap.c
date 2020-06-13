@@ -14,7 +14,7 @@ extern uint8_t is_master;
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 #define	 _BASE		0		
-#define	 _RH_FN     	1	
+#define	 _FN_EMACS     	1	
 #define	 _LH_FN		2	
 #define	 _LH_NUMS	3	
 #define	 _RH_NUMS	4	
@@ -283,18 +283,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       LT(_LH_MOVE,KC_GRAVE),	SFT_T(KC_Z),	KC_X,		KC_C,	KC_V,		KC_B,	KC_N,	KC_M,		TD(TD_COMM),		TD(TD_PER),	SFT_T(KC_SLSH),	KC_BSLS,	\
 
-				      	XXXXXXX,	LT(_LH_FN,KC_ENT),	KC_BSPC,	  LT(_LH_FN,KC_SPC),	LT(_RH_FN,KC_MINS),	     KC_ENT \
+				      	XXXXXXX,	LT(_LH_FN,KC_ENT),	KC_BSPC,	  LT(_LH_FN,KC_SPC),	LT(_FN_EMACS,KC_MINS),	     KC_ENT \
   ),
 
-  [_RH_FN] = LAYOUT( \
+  [_FN_EMACS] = LAYOUT( \
  
-      _______,	_______,	C(KC_C),	KC_END,		_______,		_______,	C(KC_V),	_______,	_______,	_______,	KC_UP,		_______,	\
+      KC_ESC,	_______,	C(KC_C),	KC_END,		_______,		_______,	C(KC_V),	_______,	_______,	_______,	KC_UP,		_______,	\
 
       _______,	CTL_T(KC_HOME),	C(KC_F),	KC_DEL,		LGUI_T(KC_RIGHT),	KC_ESC,		_______,	_______,	TD(TD_KILL),	_______,	RCTL_T(KC_APP),	_______,	\
  	
       _______,	_______,	_______,	_______,	KC_PGDN,		KC_LEFT,	KC_DOWN,	_______,	_______,	_______,	C(KC_Z),	_______,	\
 
-      _______,	_______,	_______,	_______,	_______,		_______	\
+							_______,	_______,	_______,	_______,	_______,		_______	\
   ),
 
   [_LH_FN] = LAYOUT( \
