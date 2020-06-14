@@ -283,16 +283,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       LT(_LH_MOVE,KC_GRAVE),	SFT_T(KC_Z),	KC_X,		KC_C,	KC_V,		KC_B,	KC_N,	KC_M,		TD(TD_COMM),		TD(TD_PER),	SFT_T(KC_SLSH),	KC_BSLS,	\
 
-				      	XXXXXXX,	LT(_LH_FN,KC_ENT),	KC_BSPC,	  LT(_LH_FN,KC_SPC),	LT(_FN_EMACS,KC_MINS),	     KC_ENT \
+				      	XXXXXXX,	LT(_LH_FN,KC_ENT),	KC_BSPC,	  LT(_LH_FN,KC_SPC),	LT(_FN_EMACS,KC_MINS),	KC_ENT \
   ),
 
   [_FN_EMACS] = LAYOUT( \
  
-      KC_ESC,	_______,	C(KC_C),	KC_END,		_______,		_______,	C(KC_V),	_______,	_______,	_______,	KC_UP,		_______,	\
+      KC_ESC,	XXXXXXX,	C(KC_C),	KC_END,		XXXXXXX,		XXXXXXX,	C(KC_V),	XXXXXXX,	XXXXXXX,	XXXXXXX,	KC_UP,		_______,	\
 
       _______,	CTL_T(KC_HOME),	C(KC_F),	KC_DEL,		LGUI_T(KC_RIGHT),	KC_ESC,		_______,	_______,	TD(TD_KILL),	_______,	RCTL_T(KC_APP),	_______,	\
  	
-      _______,	_______,	_______,	_______,	KC_PGDN,		KC_LEFT,	KC_DOWN,	_______,	_______,	_______,	C(KC_Z),	_______,	\
+      _______,	XXXXXXX,	KCZ_LEAD,	_______,	KC_PGDN,		KC_LEFT,	KC_DOWN,	_______,	_______,	_______,	C(KC_Z),	_______,	\
 
       							  _______,	_______,	_______,	_______,	_______,	_______	\
       
@@ -419,8 +419,20 @@ const char *read_keylogs(void);
 // void set_timelog(void);
 // const char *read_timelog(void);
 
+LEADER_EXTERNS();
+
 void matrix_scan_user(void) {
    iota_gfx_task();
+
+   LEADER_DICTIONARY() {
+     leading = false;
+     leader_end();
+
+     SEQ_EXEC_MACRO(KC_E) {
+       register_code(DYN_MACRO_PLAY1);
+       unregister_code(DYN_MACRO_PLAY1);
+     }
+   }
 }
 
 void matrix_render_user(struct CharacterMatrix *matrix) {

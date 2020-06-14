@@ -50,3 +50,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM 175
 #define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_TOGGLE 2
+#define LEADER_PER_KEY_TIMING 300
+#define DYNAMIC_MACRO_NO_NESTING 
