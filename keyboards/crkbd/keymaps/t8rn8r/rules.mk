@@ -12,3 +12,4 @@ SRC +=  ./lib/glcdfont.c \
 
 TAP_DANCE_ENABLE = yes
 LEADER_ENABLE = yes
+DYNAMIC_MACRO_ENABLE = yes
