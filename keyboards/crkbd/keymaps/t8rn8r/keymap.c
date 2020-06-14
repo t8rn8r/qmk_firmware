@@ -19,7 +19,8 @@ extern uint8_t is_master;
 #define	 _LH_NUMS	3	
 #define	 _RH_NUMS	4	
 #define	 _LH_MOVE	5	
-#define	 _RH_MOVE	6	
+#define	 _RH_MOVE	6
+#define  _FN_KEYS	7
 #define	 _PLOVER	14	
 #define	 _TOP 	        15
 
@@ -283,7 +284,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       LT(_LH_MOVE,KC_GRAVE),	SFT_T(KC_Z),	KC_X,		KC_C,	KC_V,		KC_B,	KC_N,	KC_M,		TD(TD_COMM),		TD(TD_PER),	SFT_T(KC_SLSH),	KC_BSLS,	\
 
-				      	XXXXXXX,	LT(_LH_FN,KC_ENT),	KC_BSPC,	  LT(_LH_FN,KC_SPC),	LT(_FN_EMACS,KC_MINS),	KC_ENT \
+					      XXXXXXX,	LT(_LH_FN,KC_ENT),	KC_BSPC,	  LT(_LH_FN,KC_SPC),	LT(_FN_EMACS,KC_MINS),	LT(_FN_KEYS,KC_ENT) \
   ),
 
   [_FN_EMACS] = LAYOUT( \
@@ -306,7 +307,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  	
       _______,	C(KC_Z),	_______,	_______,	_______,	_______,	_______,	_______,	KC_PGDN,	_______,	C(KC_Z),	_______,	\
  
-      _______,	_______,	_______,	_______,	_______,	_______	\
+      						_______,	_______,	_______,	_______,	_______,	_______	\
   ),
 
   [_LH_NUMS] = LAYOUT( \
@@ -351,6 +352,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______,	KC_LEFT,	KC_DOWN,	KC_RIGHT,	KC_PGDN,	XXXXXXX,	MO(_LH_NUMS),	MO(_LH_MOVE),	_______,	_______,	_______,	_______,	\
  
 											KC_LSFT,	_______,	_______,	_______,	_______,	_______	\
+  ),
+
+  [_FN_KEYS] = LAYOUT( \
+ 
+      _______,	XXXXXXX,	KC_F1,		KC_F2,		KC_F3,		KC_F10,	_______,	_______,	_______,	_______,	_______,	_______,	\
+
+      _______,	XXXXXXX,	KC_F4,		KC_F5,		KC_F6,		KC_F11,	_______,	_______,	_______,	_______,	_______,	_______,	\
+
+      _______,  XXXXXXX,	KC_F7,		KC_F8,		KC_F9,		KC_F12,	_______,	_______,	_______,	_______,	_______,	_______,	\
+
+                                                _______,	_______,       _______,	_______,	_______,	_______	\
   ),
 
   [_PLOVER] = LAYOUT( \
