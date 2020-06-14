@@ -292,7 +292,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       _______,	CTL_T(KC_HOME),	C(KC_F),	KC_DEL,		LGUI_T(KC_RIGHT),	KC_ESC,		_______,	_______,	TD(TD_KILL),	_______,	RCTL_T(KC_APP),	_______,	\
  	
-      _______,	XXXXXXX,	KCZ_LEAD,	_______,	KC_PGDN,		KC_LEFT,	KC_DOWN,	_______,	_______,	_______,	C(KC_Z),	_______,	\
+      _______,	XXXXXXX,	KC_LEAD,	_______,	KC_PGDN,		KC_LEFT,	KC_DOWN,	_______,	_______,	_______,	C(KC_Z),	_______,	\
 
       							  _______,	_______,	_______,	_______,	_______,	_______	\
       
@@ -428,9 +428,8 @@ void matrix_scan_user(void) {
      leading = false;
      leader_end();
 
-     SEQ_EXEC_MACRO(KC_E) {
-       register_code(DYN_MACRO_PLAY1);
-       unregister_code(DYN_MACRO_PLAY1);
+     SEQ_ONE_KEY(KC_E) {
+       SEND_STRING("It worked!");
      }
    }
 }
