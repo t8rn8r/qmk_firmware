@@ -288,11 +288,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_FN_EMACS] = LAYOUT( \
  
-      KC_ESC,	XXXXXXX,	C(KC_C),	KC_END,		XXXXXXX,		XXXXXXX,	C(KC_V),	XXXXXXX,	XXXXXXX,	XXXXXXX,	KC_UP,		_______,	\
+      KC_ESC,	XXXXXXX,	C(KC_C),	KC_END,		XXXXXXX,		XXXXXXX,	C(KC_V),	XXXXXXX,	XXXXXXX,	XXXXXXX,	KC_UP,		DM_REC1,	\
 
-      _______,	CTL_T(KC_HOME),	C(KC_F),	KC_DEL,		LGUI_T(KC_RIGHT),	KC_ESC,		_______,	_______,	TD(TD_KILL),	_______,	RCTL_T(KC_APP),	_______,	\
+      _______,	CTL_T(KC_HOME),	C(KC_F),	KC_DEL,		LGUI_T(KC_RIGHT),	KC_ESC,		XXXXXXX,	XXXXXXX,	TD(TD_KILL),	XXXXXXX,	RCTL_T(KC_APP),	DM_RSTP,	\
  	
-      _______,	XXXXXXX,	KC_LEAD,	_______,	KC_PGDN,		KC_LEFT,	KC_DOWN,	_______,	_______,	_______,	C(KC_Z),	_______,	\
+      _______,	XXXXXXX,	KC_LEAD,	XXXXXXX,	KC_PGDN,		KC_LEFT,	KC_DOWN,	_______,	_______,	_______,	C(KC_Z),	DM_PLY1,	\
 
       							  _______,	_______,	_______,	_______,	_______,	_______	\
       
