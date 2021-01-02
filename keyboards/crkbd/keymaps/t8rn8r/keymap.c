@@ -92,7 +92,7 @@ void oled_render_layer_state(void) {
   oled_write_P(PSTR("Layer: "), false);
   switch (get_highest_layer(layer_state)) {
     case 0:
-      oled_write_ln_P(PSTR("DEF\DEF"), false);
+      oled_write_ln_P(PSTR("DEF\tDEF"), false);
       break;
     case 1:
       oled_write_ln_P(PSTR("NUM\tNAV"), false);
