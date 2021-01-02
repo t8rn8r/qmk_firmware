@@ -23,8 +23,9 @@ enum {
 };
 
 enum {
-  // tap: KC_ENT; hold: rshift; dtap: TG layer; dhold: MO layer 
+  // tap: KC_ENT;     hold: rshift; dtap: TG layer; dhold: MO layer 
   RS_TG2,
+  // tap: open paren; hold: lshift; dtap: TG layer; dhold: MO layer 
   LS_TG1
 };
 
