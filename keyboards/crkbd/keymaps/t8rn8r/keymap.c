@@ -32,218 +32,218 @@ enum macro_keycodes {
   KC_SAMPLEMACRO,
 };
 
-// Tap dance stuff
+// Tap dance stuff {
 
 typedef struct {
-	bool is_press_action;
-	int state;
+  bool is_press_action;
+  int state;
 } tap;
 
 enum {
-	SINGLE_TAP = 1,
-	SINGLE_HOLD = 2, 
-	DOUBLE_TAP = 3,
-	DOUBLE_HOLD = 4,
-	DOUBLE_SINGLE_TAP = 5,
-	TRIPLE_TAP = 6,
-	TRIPLE_HOLD = 7
+  SINGLE_TAP = 1,
+  SINGLE_HOLD = 2, 
+  DOUBLE_TAP = 3,
+  DOUBLE_HOLD = 4,
+  DOUBLE_SINGLE_TAP = 5,
+  TRIPLE_TAP = 6,
+  TRIPLE_HOLD = 7
 };
 
 enum td_keycodes {
-	//space, enter
-	TD_SPC_ENT = 0,
-	TD_COMM,
-	TD_PER,
-	TD_Q_TAB,
-	TD_PAREN,
-	TD_CPAREN,
-	TD_SCL_APO,
-	TD_RESET,
-	TD_KILL
+  //space, enter
+  TD_SPC_ENT = 0,
+  TD_COMM,
+  TD_PER,
+  TD_Q_TAB,
+  TD_PAREN,
+  TD_CPAREN,
+  TD_SCL_APO,
+  TD_RESET,
+  TD_KILL
 };
 
 int cur_dance (qk_tap_dance_state_t *state) {
-	if (state->count == 1) {
-		//if key is interrupted or normally tapped, you want single tap
-		//else, you're holding
-		if (state->interrupted || !state->pressed) return SINGLE_TAP;
-		else return SINGLE_HOLD;
-	} else if (state->count == 2) {
-		//if interrupted, you wanted a double single tap,
-		//but if held, you want a double hold,
-		//but if neither of those, you just want a normal double tap!
-		if (state->interrupted) return DOUBLE_SINGLE_TAP;
-		else if (state->pressed) return DOUBLE_HOLD;
-		else return DOUBLE_TAP;
-	}
-	//I don't know why he didn't use an else if here
-	if (state->count == 3) {
-		if (state->interrupted || !state->pressed) return TRIPLE_TAP;
-		else return TRIPLE_HOLD;
-	} else {
-		return 8; //because why not?
-	}
+  if (state->count == 1) {
+    //if key is interrupted or normally tapped, you want single tap
+    //else, you're holding
+    if (state->interrupted || !state->pressed) return SINGLE_TAP;
+    else return SINGLE_HOLD;
+  } else if (state->count == 2) {
+    //if interrupted, you wanted a double single tap,
+    //but if held, you want a double hold,
+    //but if neither of those, you just want a normal double tap!
+    if (state->interrupted) return DOUBLE_SINGLE_TAP;
+    else if (state->pressed) return DOUBLE_HOLD;
+    else return DOUBLE_TAP;
+  }
+  //I don't know why he didn't use an else if here
+  if (state->count == 3) {
+    if (state->interrupted || !state->pressed) return TRIPLE_TAP;
+    else return TRIPLE_HOLD;
+  } else {
+    return 8; //because why not?
+  }
 }
 
-
+// comma
 void hit_comma_finished (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count == 2) {
-		register_code (KC_LSFT);
-		register_code (KC_1);
-	} else {
-		register_code (KC_COMM);
-	}
+  if (state->count == 2) {
+    register_code (KC_LSFT);
+    register_code (KC_1);
+  } else {
+    register_code (KC_COMM);
+  }
 }
 
 void hit_comma_reset (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count == 2) {
-		unregister_code (KC_LSFT);
-		unregister_code (KC_1);
-	} else {
-		unregister_code (KC_COMM);
-	}
+  if (state->count == 2) {
+    unregister_code (KC_LSFT);
+    unregister_code (KC_1);
+  } else {
+    unregister_code (KC_COMM);
+  }
 }
 
-
+// period
 void hit_period_finished (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count == 2) {
-		register_code (KC_LSFT);
-		register_code (KC_SLSH);
-	} else {
-		register_code (KC_DOT);
-	}
+  if (state->count == 2) {
+    register_code (KC_LSFT);
+    register_code (KC_SLSH);
+  } else {
+    register_code (KC_DOT);
+  }
 }
 
 void hit_period_reset (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count == 2) {
-		unregister_code (KC_LSFT);
-		unregister_code (KC_SLSH);
-	} else {
-		unregister_code (KC_DOT);
-	}
+  if (state->count == 2) {
+    unregister_code (KC_LSFT);
+    unregister_code (KC_SLSH);
+  } else {
+    unregister_code (KC_DOT);
+  }
 }
 
-
+// paren 
 void hit_paren_finished (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count == 2) {
-		register_code (KC_LBRC);
-	} else if (state->count == 3) {
-		register_code (KC_LSFT);
-		register_code (KC_LBRC);
-	} else {
-		register_code (KC_LSFT);
-		register_code (KC_9);
-	}
+  if (state->count == 2) {
+    register_code (KC_LBRC);
+  } else if (state->count == 3) {
+    register_code (KC_LSFT);
+    register_code (KC_LBRC);
+  } else {
+    register_code (KC_LSFT);
+    register_code (KC_9);
+  }
 }
 
 void hit_paren_reset (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count == 2) {
-		unregister_code (KC_LBRC);
-	} else if (state->count == 3) {
-		unregister_code (KC_LSFT);
-		unregister_code (KC_LBRC);
-	} else {
-		unregister_code (KC_LSFT);
-		unregister_code (KC_9);
-	}
+  if (state->count == 2) {
+    unregister_code (KC_LBRC);
+  } else if (state->count == 3) {
+    unregister_code (KC_LSFT);
+    unregister_code (KC_LBRC);
+  } else {
+    unregister_code (KC_LSFT);
+    unregister_code (KC_9);
+  }
 }
 
-
+// close paren
 void hit_cparen_finished (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count == 2) {
-		register_code (KC_RBRC);
-	} else if (state->count == 3) {
-		register_code (KC_LSFT);
-		register_code (KC_RBRC);
-	} else {
-		register_code (KC_LSFT);
-		register_code (KC_0);
-	}
+  if (state->count == 2) {
+    register_code (KC_RBRC);
+  } else if (state->count == 3) {
+    register_code (KC_LSFT);
+    register_code (KC_RBRC);
+  } else {
+    register_code (KC_LSFT);
+    register_code (KC_0);
+  }
 }
 
 void hit_cparen_reset (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count == 2) {
-		unregister_code (KC_RBRC);
-	} else if (state->count == 3) {
-		unregister_code (KC_LSFT);
-		unregister_code (KC_RBRC);
-	} else {
-		unregister_code (KC_LSFT);
-		unregister_code (KC_0);
-	}
+  if (state->count == 2) {
+    unregister_code (KC_RBRC);
+  } else if (state->count == 3) {
+    unregister_code (KC_LSFT);
+    unregister_code (KC_RBRC);
+  } else {
+    unregister_code (KC_LSFT);
+    unregister_code (KC_0);
+  }
 }
 
-
+// semicolon, apostrophe 
 static tap td_scl_apo_state = {
-	.is_press_action = true,
-	.state = 0
+  .is_press_action = true,
+  .state = 0
 };
 
 void hit_scl_finished (qk_tap_dance_state_t *state, void *user_data) {
-	td_scl_apo_state.state = cur_dance(state);
-	switch (td_scl_apo_state.state) {
-		case SINGLE_TAP: register_code(KC_QUOT); break;
-		case SINGLE_HOLD: register_code(KC_RCTL); break;
-		case DOUBLE_TAP: register_code(KC_SCLN); break;
-		case DOUBLE_HOLD: register_code(KC_RCTL); break;
-		case DOUBLE_SINGLE_TAP: break;
-	}
+  td_scl_apo_state.state = cur_dance(state);
+  switch (td_scl_apo_state.state) {
+    case SINGLE_TAP: register_code(KC_QUOT); break;
+    case SINGLE_HOLD: register_code(KC_RCTL); break;
+    case DOUBLE_TAP: register_code(KC_SCLN); break;
+    case DOUBLE_HOLD: register_code(KC_RCTL); break;
+    case DOUBLE_SINGLE_TAP: break;
+  }
 }
 
 void hit_scl_reset (qk_tap_dance_state_t *state, void *user_data) {
-	td_scl_apo_state.state = cur_dance(state);
-	switch (td_scl_apo_state.state) {
-		case SINGLE_TAP: unregister_code(KC_QUOT); break;
-		case SINGLE_HOLD: unregister_code(KC_RCTL); break;
-		case DOUBLE_TAP: unregister_code(KC_SCLN); break;
-		case DOUBLE_HOLD: unregister_code(KC_RCTL); break;
-		case DOUBLE_SINGLE_TAP: break;
-	}
-	unregister_code(KC_RCTL);
-	td_scl_apo_state.state = 0;
+  td_scl_apo_state.state = cur_dance(state);
+  switch (td_scl_apo_state.state) {
+    case SINGLE_TAP: unregister_code(KC_QUOT); break;
+    case SINGLE_HOLD: unregister_code(KC_RCTL); break;
+    case DOUBLE_TAP: unregister_code(KC_SCLN); break;
+    case DOUBLE_HOLD: unregister_code(KC_RCTL); break;
+    case DOUBLE_SINGLE_TAP: break;
+  }
+  unregister_code(KC_RCTL);
+  td_scl_apo_state.state = 0;
 }
 
-
+// esc, reset
 void hit_reset_finished (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count >= 5) {
-		reset_keyboard();
-		reset_tap_dance(state);
-	} else {
-		register_code(KC_ESC);
-	}
+  if (state->count >= 5) {
+    reset_keyboard();
+    reset_tap_dance(state);
+  } else {
+    register_code(KC_ESC);
+  }
 }
 
 void hit_reset_reset (qk_tap_dance_state_t *state, void *user_data) {
-	if (state->count >= 5) {
-		reset_keyboard();
-		reset_tap_dance(state);
-	} else {
-		unregister_code(KC_ESC);
-	}
+  if (state->count >= 5) {
+    reset_keyboard();
+    reset_tap_dance(state);
+  } else {
+    unregister_code(KC_ESC);
+  }
 }
 
-
+// kill function 
 void kill (qk_tap_dance_state_t *state, void *user_data) {
-// This function is meant to replicate the kill command (naievely)
+  // This function is meant to replicate the kill command (naievely)
 
-	// move the cursor to the beginning of the line (good if you want a delete line function)
-	//register_code (KC_HOME);
-	//unregister_code (KC_HOME);
+  // move the cursor to the beginning of the line (good if you want a delete line function)
+  //register_code (KC_HOME);
+  //unregister_code (KC_HOME);
 
-	// shift select the whole line
-	register_code (KC_LSFT);
-	register_code (KC_END);
-	unregister_code (KC_END);
-	unregister_code (KC_LSFT);
+  // shift select the whole line
+  register_code (KC_LSFT);
+  register_code (KC_END);
+  unregister_code (KC_END);
+  unregister_code (KC_LSFT);
 
-	// the cut command could go here, but the clipboard on Windows is trash, 
-	// so I'm not going to enable it by default, but I will put the copy option
-	// here just in case
-	//register_code (KC_COPY); // actually, the copy keycode doesn't seem to work
+  // the cut command could go here, but the clipboard on Windows is trash, 
+  // so I'm not going to enable it by default, but I will put the copy option
+  // here just in case
+  //register_code (KC_COPY); // actually, the copy keycode doesn't seem to work
 
-	// delete the line
-	register_code (KC_BSPC);
-	unregister_code (KC_BSPC);
+  // delete the line
+  register_code (KC_BSPC);
+  unregister_code (KC_BSPC);
 }
 
 
@@ -274,6 +274,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 	[TD_KILL] = ACTION_TAP_DANCE_FN (kill)
 };
 
+//}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT( \
