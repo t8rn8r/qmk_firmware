@@ -30,7 +30,8 @@ enum {
 
 uint8_t cur_dance(qk_tap_dance_state_t *state) {
   if (state->count == 1) {
-    if (state->interrupted || !state->pressed) return S_TAP;
+    //if (state->interrupted || !state->pressed) return S_TAP;
+    if (!state->pressed) return S_TAP;
     else return S_HOLD;
   } else if (state->count == 2) {
     if (state->interrupted) return DS_TAP;
