@@ -24,8 +24,8 @@ enum {
 
 enum {
   // tap: KC_ENT; hold: rshift; dtap: TG layer; dhold: MO layer 
-  RS_MO_TG,
-  LS_MO_TG
+  RS_TG2,
+  LS_TG1
 };
 
 uint8_t cur_dance(qk_tap_dance_state_t *state) {
@@ -40,6 +40,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state) {
   } else return 8;
 }
 
+/* DANCE FOR RIGHT SHIFT */
 static tap rs_tap_state = {
   .is_press_action = true,
   .state = 0
@@ -76,18 +77,71 @@ void rs_reset(qk_tap_dance_state_t *state, void *user_data) {
       unregister_code(KC_RSFT);
       break;
     case D_TAP:
-      //layer_invert(2);
       break;
     case D_HOLD:
       layer_off(2);
       break;
     case DS_TAP:
-      tap_code(KC_ENT);
       unregister_code(KC_ENT);
       break;
   }
 }
 
+
+/* DANCE FOR LEFT SHIFT */
+static tap ls_tap_state = {
+  .is_press_action = true,
+  .state = 0
+};
+
+void ls_finished(qk_tap_dance_state_t *state, void *user_data) {
+  ls_tap_state.state = cur_dance(state);
+  switch (ls_tap_state.state) {
+    case S_TAP:
+      register_code(KC_LSFT);
+      register_code(KC_9);
+      break;
+    case S_HOLD:
+      register_code(KC_LSFT);
+      break;
+    case D_TAP:
+      layer_invert(1);
+      break;
+    case D_HOLD:
+      layer_on(1);
+      break;
+    case DS_TAP:
+      register_code(KC_LSFT);
+      tap_code(KC_9);
+      unregister_code(KC_LSFT);
+      register_code(KC_LSFT);
+      register_code(KC_9);
+      break;
+  }
+}
+
+void ls_reset(qk_tap_dance_state_t *state, void *user_data) {
+  switch (ls_tap_state.state) {
+    case S_TAP:
+      unregister_code(KC_LSFT);
+      unregister_code(KC_9);
+      break;
+    case S_HOLD:
+      unregister_code(KC_LSFT);
+      break;
+    case D_TAP:
+      break;
+    case D_HOLD:
+      layer_off(1);
+      break;
+    case DS_TAP:
+      unregister_code(KC_LSFT);
+      unregister_code(KC_9);
+      break;
+  }
+}
+
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [RS_MO_TG] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rs_finished, rs_reset)
+  [RS_TG2] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, rs_finished, rs_reset),
+  [LS_TG1] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ls_finished, ls_reset)
 };
