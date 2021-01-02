@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
+#include "keymap_steno.h" 
+
 // include my extra files to keep everything neat
 #include "keycodes.h"
 
@@ -26,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,			KC_Y, KC_U, KC_I,    KC_O,   KC_P,    XXXXXXX,
        KC_TAB,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,			KC_H, KC_J, KC_K,    KC_L,   KC_SCLN, KC_QUOT,
         MO(1),    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,			KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, MO(2),  
-                                          KC_LGUI, TD(LS_TG1), BS_CTL,	SP_CTL, TD(RS_TG2), KC_RALT
+                                          KC_LGUI, TD(LS_TG1), BS_CTL,	SP_NAV, TD(RS_TG2), KC_RALT
   ),
 
   [1] = LAYOUT_split_3x6_3(
@@ -48,6 +50,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  KC_GRV,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       MO(3), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                        KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, _______,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          _______, _______, _______,    _______, _______, _______                                       
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [3] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+        RESET, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      _______, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______                                       
                                       //`--------------------------'  `--------------------------'
