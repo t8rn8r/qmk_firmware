@@ -75,7 +75,7 @@ void rs_reset(qk_tap_dance_state_t *state, void *user_data) {
       unregister_code(KC_RSFT);
       break;
     case D_TAP:
-      layer_invert(2);
+      //layer_invert(2);
       break;
     case D_HOLD:
       layer_off(2);
