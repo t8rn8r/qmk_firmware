@@ -106,7 +106,7 @@ void oled_render_layer_state(void) {
       oled_write_ln_P(PSTR("TODO: SYMS\tSYMS"), false);
       break;
     case 3:
-      oled_write_ln_P(PSTR("ADJUST"), false);
+      oled_write_ln_P(PSTR("TODO: ADJUST"), false);
       break;
     case 4:
       oled_write_ln_P(PSTR("~PLOVER~"), false);
