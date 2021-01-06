@@ -4,6 +4,7 @@
 
 #define BS_CTL MT(MOD_LCTL, KC_BSPC)
 #define SP_NAV LT(1, KC_SPC)
+#define TB_CTL MT(MOD_LCTL, KC_TAB)
 
 
 // tap dance stuff
