@@ -3,7 +3,7 @@
 // eventually you'll want to enum the layers here 
 
 #define BS_CTL MT(MOD_LCTL, KC_BSPC)
-#define SP_NAV LT(1, KC_SPC)
+#define SP_TG1 LT(1, KC_SPC)
 #define TB_CTL MT(MOD_LCTL, KC_TAB)
 
 
